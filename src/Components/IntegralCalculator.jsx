@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Line } from 'react-chartjs-2';
-import 'chart.js/auto';
+import { useData } from './DataProvider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const IntegralCalculator = () => {
@@ -8,8 +7,9 @@ const IntegralCalculator = () => {
   const [upperLimit, setUpperLimit] = useState('');
   const [numPartitions, setNumPartitions] = useState('');
   const [integrals, setIntegrals] = useState([]);
-  const [chartData, setChartData] = useState(null);
   const [error, setError] = useState('');
+
+  const { chartData, setChartData } = useData();
 
   const validateInput = (value) => {
     if (isNaN(value)) {
@@ -88,6 +88,10 @@ const IntegralCalculator = () => {
     return (Math.pow(Math.log(x), 2) / x);
   };
 
+//   <div>
+//   {chartData && <Graph chartData={chartData} />}
+// </div>
+
   return (
     <div className="container-fluid bg-dark text-light p-4 d-flex flex-column justify-content-between" style={{ height: '100vh' }}>
       <div className="mb-4">
@@ -125,10 +129,10 @@ const IntegralCalculator = () => {
         <button onClick={plotChart} className="btn btn-success">Построить график</button>
       </div>
       <div>
-        {chartData && <Line data={chartData} options={{ maintainAspectRatio: false, responsive: true}} />}
+
       </div>
-      <div className="mt-4" style={{ maxHeight: '40vh', overflowY: 'auto' }}>
-        <h2>Рассчитанные интегралы:</h2>
+      <h2>Рассчитанные интегралы:</h2>
+      <div className="mt-4" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
         <ul className="list-group">
           {integrals.map((integral, index) => (
             <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
