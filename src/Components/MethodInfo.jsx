@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const MethodInfo = () => {
   return (
@@ -13,7 +13,7 @@ const MethodInfo = () => {
       <p> 
         Если отрезок a,b является элементарным и не подвергается дальнейшему разбиению, 
         значение интеграла можно найти по формуле: 
-      </p>
+      </p>x
       <p> 
           h * ((F(b) + F(a)) / 2 + sum), где h = (b - a) / кол-во разбиейний 
       </p>

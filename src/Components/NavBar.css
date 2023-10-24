@@ -1,0 +1,10 @@
+.active {
+    background-color: #007bff; 
+    color: #fff; 
+    border-radius: 4px;
+  }
+  
+  .active:hover {
+    background-color: #0056b3; 
+  }
+  

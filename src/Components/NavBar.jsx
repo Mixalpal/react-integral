@@ -1,24 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink} from 'react-router-dom';
+import './NavBar.css';
 
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div className="container">
-      <Link to="/" className="navbar-brand">Интеграл Калькулятор</Link>
-      <div className="collapse navbar-collapse">
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to="/graph" className="nav-link">График</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/trapezoid-method" className="nav-link">Информация о методе</Link>
-          </li>
-        </ul>
+      <div className="container">
+        <div className="collapse navbar-collapse">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <NavLink to="/" exact className="nav-link" activeClassName="active">Интеграл</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/graph" className="nav-link" activeClassName="active">График</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/trapezoid-method" className="nav-link" activeClassName="active">Информация о методе</NavLink>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
   );
-};
+}
 
 export default NavBar;
