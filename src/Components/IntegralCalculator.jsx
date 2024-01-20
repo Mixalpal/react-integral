@@ -20,19 +20,35 @@ const IntegralCalculator = () => {
     return true;
   };
 
-  const calculateIntegral = () => {
+  const calculateIntegral = async () => {
     if (!validateInput(lowerLimit) || !validateInput(upperLimit) || !validateInput(numPartitions)) {
       return;
     }
-
+  
     const lower = parseFloat(lowerLimit);
     const upper = parseFloat(upperLimit);
     const partitions = parseInt(numPartitions);
+  
+    try {
+      console.log('server request');
+      const response = await fetch(`http://localhost:8080/api/Integral/calculateIntegral?SplitNumbers=${partitions}&UpLim=${upper}&LowLim=${lower}`);
+      
+      
+      if (!response.ok) {
+        console.error(`HTTP error! Status: ${response.status}`);
+        return;
+      }
+  
+      const result = await response.json();
 
-    const result = integrate(lower, upper, partitions);
-
-    setIntegrals([...integrals, result]);
+      console.log('From Server result -', result);
+      
+      setIntegrals([...integrals, result]);
+    } catch (error) {
+      console.error('Error during fetch:', error);
+    }
   };
+  
 
   const clearFields = () => {
     setLowerLimit('');
@@ -71,17 +87,6 @@ const IntegralCalculator = () => {
     const updatedIntegrals = [...integrals];
     updatedIntegrals.splice(index, 1);
     setIntegrals(updatedIntegrals);
-  };
-
-  const integrate = (lower, upper, partitions) => {
-    const h = (upper - lower) / partitions;
-    let sum = 0;
-
-    for (let i = 0; i < partitions; i++) {
-      sum += integralFunc(lower + h*i);
-    }
-
-    return h * ((integralFunc(lower) + integralFunc(upper)) / 2 + sum);
   };
 
   const integralFunc = (x) => {

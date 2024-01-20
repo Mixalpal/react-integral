@@ -1,11 +1,15 @@
-version: '3.5'
+version: '3'
 services:
-  client1:
-    image: ifigurin12/react-integral:first
+  web:
+    image: ifigurin12/integral_api:initial  
     ports:
-      - "3000:3000"
+      - "8080:80" 
 
-  client2:
-    image: ifigurin12/reac-integ:tagname
+  client:
+    image: ifigurin12/react-integral:first 
     ports:
-      - "3001:3000"
+      - "3000:3000"  
+
+networks:
+  integral_network:
+    driver: bridge
