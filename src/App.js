@@ -5,6 +5,7 @@ import NavBar from './Components/NavBar';
 import Graph from './Components/Graph';
 import MethodInfo from './Components/MethodInfo';
 import {DataProvider} from './Components/DataProvider';
+import QuestionsAndAnswersPage from './Components/QuestionsAndAnswers';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/graph" element={<Graph/>} />
           <Route path="/trapezoid-method" element={<MethodInfo />} />
           <Route path="/" element={<IntegralCalculator/>} />
+          <Route path="/qna" element={<QuestionsAndAnswersPage/>} />
         </Routes>
 
       </div>

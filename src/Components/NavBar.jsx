@@ -17,6 +17,9 @@ const NavBar = () => {
             <li className="nav-item">
               <NavLink to="/trapezoid-method" className="nav-link" activeClassName="active">Информация о методе</NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink to="/qna" className="nav-link" activeClassName="active">Тест</NavLink>
+            </li>
           </ul>
         </div>
       </div>

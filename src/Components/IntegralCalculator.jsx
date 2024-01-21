@@ -31,7 +31,7 @@ const IntegralCalculator = () => {
   
     try {
       console.log('server request');
-      const response = await fetch(`http://localhost:8080/api/Integral/calculateIntegral?SplitNumbers=${partitions}&UpLim=${upper}&LowLim=${lower}`);
+      const response = await fetch(`/Integral/calculateIntegral?SplitNumbers=${partitions}&UpLim=${upper}&LowLim=${lower}`); // http://localhost:8080
       
       
       if (!response.ok) {
@@ -42,7 +42,7 @@ const IntegralCalculator = () => {
       const result = await response.json();
 
       console.log('From Server result -', result);
-      
+        
       setIntegrals([...integrals, result]);
     } catch (error) {
       console.error('Error during fetch:', error);
