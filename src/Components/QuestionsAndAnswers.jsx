@@ -10,7 +10,7 @@ const QuestionsAndAnswersPage = () => {
       const fetchData = async () => {
         try {
           // Получение вопросов
-          const questionsResponse = await fetch('/QnA/get-questions'); // http://localhost:8080
+          const questionsResponse = await fetch('http://localhost:5000/QnA/get-questions'); // http://localhost:8080
           const questionsData = await questionsResponse.json();
           setQuestions(questionsData);
           console.log(questionsResponse);
@@ -25,17 +25,19 @@ const QuestionsAndAnswersPage = () => {
     }, []);
   
     // Обработчик изменения выбранных ответов пользователя
-    const handleAnswerChange = (questionId, answerId) => {
+    const handleAnswerChange = (index, answerId) => {
       setUserAnswers((prevAnswers) => ({
         ...prevAnswers,
-        [questionId]: answerId,
+        [index]: answerId,
       }));
+      console.log(userAnswers)
     };
   
     // Обработчик кнопки "Ответить"
     const handleAnswerSubmit = () => {
+      console.log(userAnswers)
       // Отправка выбранных ответов на сервер (замените на свой URL)
-      fetch('/QnA/check-answers', { //http://localhost:8080
+      fetch(`http://localhost:5000/QnA/check-answers?userAnswers=${userAnswers[0]}&userAnswers=${userAnswers[1]}&userAnswers=${userAnswers[2]}`, { //http://localhost:8080
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -65,8 +67,8 @@ const QuestionsAndAnswersPage = () => {
                       type="radio"
                       name={`question_${question.id}`}
                       value={answer.id}
-                      onChange={() => handleAnswerChange(question.id, answer.id)}
-                      checked={userAnswers[question.id] === answer.id}
+                      onChange={() => handleAnswerChange(questions.indexOf(question), answer.id)}
+                      checked={userAnswers[questions.indexOf(question)] === answer.id}
                     />
                     {answer.text}
                   </label>

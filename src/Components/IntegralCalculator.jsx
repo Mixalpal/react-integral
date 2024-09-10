@@ -31,8 +31,7 @@ const IntegralCalculator = () => {
   
     try {
       console.log('server request');
-      const response = await fetch(`/Integral/calculateIntegral?SplitNumbers=${partitions}&UpLim=${upper}&LowLim=${lower}`); // http://localhost:8080
-      
+      const response = await fetch(`http://localhost:5000/Integral/calculateIntegral?SplitNumbers=${partitions}&UpLim=${upper}&LowLim=${lower}`); // http://localhost:8080
       
       if (!response.ok) {
         console.error(`HTTP error! Status: ${response.status}`);
@@ -48,7 +47,6 @@ const IntegralCalculator = () => {
       console.error('Error during fetch:', error);
     }
   };
-  
 
   const clearFields = () => {
     setLowerLimit('');
